@@ -4,7 +4,7 @@
 [![Coverage](https://github.com/tuan78/gogeoip/actions/workflows/coverage.yml/badge.svg)](https://github.com/tuan78/gogeoip/actions/workflows/coverage.yml)
 [![codecov](https://codecov.io/gh/tuan78/gogeoip/branch/main/graph/badge.svg)](https://codecov.io/gh/tuan78/gogeoip)
 [![Docker Image](https://github.com/tuan78/gogeoip/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/tuan78/gogeoip/actions/workflows/docker-publish.yml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/tuan78/gogeoip)](https://goreportcard.com/report/github.com/tuan78/gogeoip)
+[![Go Report Card](https://img.shields.io/badge/go%20report-A+-brightgreen.svg?style=flat)](https://goreportcard.com/report/github.com/tuan78/gogeoip)
 [![Go Version](https://img.shields.io/github/go-mod/go-version/tuan78/gogeoip)](go.mod)
 [![Latest Release](https://img.shields.io/github/v/release/tuan78/gogeoip?include_prereleases)](https://github.com/tuan78/gogeoip/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
