@@ -1,10 +1,15 @@
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+
 linters:
   disable-all: true
   enable:
     - errcheck        # unchecked errors
+    - gosimple        # simplify code
     - govet           # go vet checks
     - ineffassign     # unused assignments
-    - staticcheck     # static analysis (includes gosimple)
+    - staticcheck     # static analysis
     - unused          # unused code
     - gosec           # security issues
     - misspell        # typos
@@ -13,19 +18,59 @@ linters:
     - revive          # opinionated but configurable linter
     - gofmt           # formatting
     - goimports       # import ordering
+    - unconvert       # unnecessary type conversions
+    - unparam         # unused function parameters
+    - errorlint       # error wrapping issues
+    - gocyclo         # cyclomatic complexity
+    - funlen          # function length
+    - gocognit        # cognitive complexity
 
 linters-settings:
+  errcheck:
+    check-type-assertions: true
+    check-blank: true
+
+  govet:
+    enable-all: true
+    disable:
+      - shadow
+      - fieldalignment
+
+  gofmt:
+    simplify: true
+
+  goimports:
+    local-prefixes: github.com/tuan78/gogeoip
+
   gosec:
     excludes:
       - G104   # errors unhandled — already caught by errcheck
-      - G118   # goroutine context — intentional in shutdown handler
+
   revive:
     rules:
       - name: exported
+        severity: warning
         arguments:
           - "checkPrivateReceivers"
       - name: package-comments
-        disabled: true
+        severity: warning
+        disabled: false
+      - name: var-naming
+        severity: warning
+        disabled: false
+
+  gocyclo:
+    min-complexity: 15
+
+  funlen:
+    lines: 100
+    statements: 50
+
+  gocognit:
+    min-complexity: 20
+
+  misspell:
+    locale: US
 
 issues:
   max-issues-per-linter: 0
@@ -35,3 +80,10 @@ issues:
       linters:
         - noctx
         - gosec
+        - funlen
+        - gocyclo
+        - gocognit
+    - path: cmd/
+      linters:
+        - revive
+      text: "package-comments"
