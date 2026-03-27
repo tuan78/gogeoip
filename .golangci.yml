@@ -1,7 +1,5 @@
-version: "2"
-
 linters:
-  default: none
+  disable-all: true
   enable:
     - errcheck        # unchecked errors
     - govet           # go vet checks
@@ -13,30 +11,26 @@ linters:
     - noctx           # http calls without context
     - bodyclose       # unclosed http response bodies
     - revive          # opinionated but configurable linter
-  settings:
-    gosec:
-      excludes:
-        - G104   # errors unhandled — already caught by errcheck
-        - G118   # goroutine context — intentional in shutdown handler
-    revive:
-      rules:
-        - name: exported
-          arguments:
-            - "checkPrivateReceivers"
-        - name: package-comments
-          disabled: true
-
-formatters:
-  enable:
     - gofmt           # formatting
     - goimports       # import ordering
+
+linters-settings:
+  gosec:
+    excludes:
+      - G104   # errors unhandled — already caught by errcheck
+      - G118   # goroutine context — intentional in shutdown handler
+  revive:
+    rules:
+      - name: exported
+        arguments:
+          - "checkPrivateReceivers"
+      - name: package-comments
+        disabled: true
 
 issues:
   max-issues-per-linter: 0
   max-same-issues: 0
-
-exclusions:
-  rules:
+  exclude-rules:
     - path: _test\.go
       linters:
         - noctx

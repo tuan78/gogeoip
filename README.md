@@ -26,7 +26,7 @@ A lightweight, self-contained GeoIP lookup HTTP service powered by the [MaxMind 
 
 ## Prerequisites
 
-- Go 1.24+
+- Go 1.25+
 - A free [MaxMind account](https://www.maxmind.com/en/geolite2/signup) with an account ID and license key
 - Docker & Docker Compose (for containerised runs)
 - `kubectl` + a cluster (for Kubernetes deployment)
@@ -210,7 +210,7 @@ make docker-run
 docker compose up --build
 ```
 
-The image is built in two stages: `golang:1.24-alpine` compiles the binary; `distroless/static-debian12:nonroot` runs it — no shell, no extra packages, runs as non-root.
+The image is built in two stages: `golang:1.25-alpine` compiles the binary; `distroless/static-debian12:nonroot` runs it — no shell, no extra packages, runs as non-root.
 
 ## Kubernetes
 
