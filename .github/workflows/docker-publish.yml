@@ -2,8 +2,6 @@ name: Build and Push Docker Image
 
 on:
     push:
-        branches:
-            - main
         tags:
             - "v*.*.*"
 
@@ -44,10 +42,10 @@ jobs:
                       # tag with git tag on version pushes (e.g. v1.2.3)
                       type=semver,pattern={{version}}
                       type=semver,pattern={{major}}.{{minor}}
-                      # tag with short SHA on every push
+                      # tag with short SHA on version tag pushes
                       type=sha,prefix=sha-
-                      # tag latest only on main branch pushes
-                      type=raw,value=latest,enable={{is_default_branch}}
+                      # tag latest on version tag pushes
+                      type=raw,value=latest
 
             - name: Build and push Docker image
               id: build
