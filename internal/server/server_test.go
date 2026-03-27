@@ -65,7 +65,7 @@ func TestServe_StartsAndShutdownsGracefully(t *testing.T) {
 		close(done)
 	}()
 
-	// Wait for context to be cancelled (which triggers shutdown)
+	// Wait for context to be canceled (which triggers shutdown)
 	select {
 	case <-done:
 		// Server shut down successfully
@@ -177,7 +177,9 @@ func TestLoggingMiddleware_WrapsHandler(t *testing.T) {
 	testHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		handlerCalled = true
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("ok"))
+		if _, err := w.Write([]byte("ok")); err != nil {
+			t.Errorf("unexpected write error: %v", err)
+		}
 	})
 
 	middleware := loggingMiddleware(testHandler)
@@ -217,7 +219,9 @@ func TestLoggingMiddleware_CapturesStatusThroughMiddleware(t *testing.T) {
 func TestLoggingMiddleware_DefaultsStatusToOK(t *testing.T) {
 	testHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Don't call WriteHeader, should default to 200
-		w.Write([]byte("no explicit status"))
+		if _, err := w.Write([]byte("no explicit status")); err != nil {
+			t.Errorf("unexpected write error: %v", err)
+		}
 	})
 
 	middleware := loggingMiddleware(testHandler)

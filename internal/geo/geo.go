@@ -16,8 +16,8 @@ type Data struct {
 	ContinentName string `json:"continent_name"`
 }
 
-// GeoReader is an interface for geolocation reader operations.
-type GeoReader interface {
+// Reader is an interface for geolocation reader operations.
+type Reader interface {
 	Country(ip net.IP) (*geoip2.Country, error)
 	Close() error
 }

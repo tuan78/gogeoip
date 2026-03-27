@@ -35,11 +35,8 @@ func TestData_AllFieldsPopulated(t *testing.T) {
 
 func TestData_WithEmptyFields(t *testing.T) {
 	data := &Data{
-		IP:            "1.1.1.1",
-		CountryCode:   "",
-		CountryName:   "",
-		ContinentCode: "",
-		ContinentName: "",
+		IP:          "1.1.1.1",
+		CountryCode: "",
 	}
 
 	if data.IP != "1.1.1.1" {

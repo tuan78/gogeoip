@@ -97,7 +97,7 @@ func loggingMiddleware(next http.Handler) http.Handler {
 	})
 }
 
-// Serve starts the gogeoip HTTP server. It blocks until ctx is cancelled.
+// Serve starts the gogeoip HTTP server. It blocks until ctx is canceled.
 func Serve(ctx context.Context, cfg config.Config, db geo.Database, c cache.Cache) {
 	cacheTTL, err := time.ParseDuration(cfg.RedisLookupCacheTTL)
 	if err != nil {

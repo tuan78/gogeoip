@@ -38,8 +38,8 @@ func TestDefaultConstants(t *testing.T) {
 // Compile-time check: *DB satisfies the Database interface.
 var _ Database = (*DB)(nil)
 
-// Compile-time check: GeoReader interface includes Country and Close.
-var _ GeoReader = (*geoip2.Reader)(nil)
+// Compile-time check: Reader interface includes Country and Close.
+var _ Reader = (*geoip2.Reader)(nil)
 
 // ── DB ───────────────────────────────────────────────────────────────────────
 
