@@ -1,0 +1,31 @@
+# Version control
+.git/
+.gitignore
+
+# Environment / secrets — never bake into the image
+.env*
+*.env
+
+# Documentation and project files not needed at runtime
+README.md
+LICENSE
+Makefile
+docker-compose.yml
+k8s.yml
+.dockerignore
+
+# Compiled binary (built inside Docker via multi-stage build)
+gogeoip
+
+# Go test artefacts
+**/*_test.go
+vendor/
+
+# Editor / IDE metadata
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS metadata
+.DS_Store

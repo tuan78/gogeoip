@@ -1,0 +1,21 @@
+# Binaries
+/gogeoip
+/bin/
+
+# Environment files
+.env.*
+!.env.sample
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Test cache
+*.test
+*.out
+
+# Database files
+*.mmdb

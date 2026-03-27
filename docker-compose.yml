@@ -1,0 +1,32 @@
+services:
+  gogeoip:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: "8080"
+      MAXMIND_ACCOUNT_ID: "${MAXMIND_ACCOUNT_ID}"
+      MAXMIND_LICENSE_KEY: "${MAXMIND_LICENSE_KEY}"
+      GEO_DB_PATH: /data/geolite2-country.mmdb
+      GEO_DB_REFRESH_INTERVAL: "24h"
+      REDIS_ADDR: "redis:6379"
+      REDIS_PASSWORD: ""
+    volumes:
+      - geodb:/data
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  geodb:
